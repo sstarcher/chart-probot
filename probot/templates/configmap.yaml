@@ -1,0 +1,32 @@
+kind: ConfigMap
+apiVersion: v1
+metadata:
+  name: {{ include "probot.fullname" . }}
+data:
+  APP_ID: {{ required "probot.appID is required" .Values.probot.appID | quote }}
+  LOG_LEVEL: {{ .Values.probot.logLevel | quote }}
+  package.json: |
+    {
+      "name": "probot",
+      "private": true,
+      "dependencies": {
+        "probot-settings": "git+https://github.com/probot/settings",
+        "probot-stale": "git+https://github.com/probot/stale"
+      },
+      "scripts": {
+        "start": "probot run"
+      },
+      "probot": {
+        "apps": [
+          "probot-settings",
+          "probot-stale"
+        ]
+      }
+    }
+  run.sh: |
+    mkdir /app
+    cp /etc/probot/package.json /app/
+    cd /app
+    apk add git
+    npm install . --no-optional
+    npm run start
