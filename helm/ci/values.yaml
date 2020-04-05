@@ -1,4 +1,4 @@
 probot:
-  appId: Required
+  appID: Required
   privateKey: Required
   webhookSecret: Required
