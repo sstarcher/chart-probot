@@ -1,0 +1,4 @@
+probot:
+  appID: Required
+  privateKey: Required
+  webhookSecret: Required

@@ -50,7 +50,7 @@ tolerations: []
 affinity: {}
 
 probot:
-  # appId: Required
+  # appID: Required
   logLevel: info
   # privateKey: Required
   # webhookSecret: Required
