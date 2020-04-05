@@ -18,7 +18,7 @@ jobs:
     - uses: actions/checkout@v2
 
     # Helm
-    - run: helm template helm > kubeval
+    - run: helm template -f ./helm/ci/values.yaml helm > kubeval
     - uses: instrumenta/kubeval-action@5915e4adba5adccac07cb156b82e54c3fed74921
       with:
         files: kubeval
